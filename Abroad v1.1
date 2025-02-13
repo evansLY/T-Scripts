@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Abroad Item Hider
 // @namespace mavri
-// @version 2.0.2
+// @version 2.0.3
 // @author MAVRI [2402357]
 // @description Hides all items except the specified ones.
 // @license GPLv3
@@ -102,6 +102,8 @@ const ItemsToShow = new Map([
           console.log("[Abroad Hider] Checking item ID:", itemId);
 
           if (allowedItems.includes(itemId)) continue;
+          console.log("[Abroad Hider] Checking item ID:", itemId);
+          console.log("[Abroad Hider] Checking item ID:", item);
           item.hidden = true;
       }
 
