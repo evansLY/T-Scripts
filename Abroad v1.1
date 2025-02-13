@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Abroad Item Hider
 // @namespace mavri
-// @version 2.0.0
+// @version 2.0.1
 // @author MAVRI [2402357]
 // @description Hides all items except the specified ones.
 // @license GPLv3
@@ -69,6 +69,8 @@ const ItemsToShow = new Map([
     }
 
       const country = document.querySelector('h4#skip-to-content')?.innerText?.trim();
+      const listItems = items.querySelectorAll("li");
+
       console.log("[Abroad Hider] Detected country:", country);
 
       const allowedItems = ItemsToShow.get(country);
@@ -81,7 +83,6 @@ const ItemsToShow = new Map([
       }
 
       console.log("[Abroad Hider] Allowed items for", country, ":", allowedItems);
-      const listItems = items.querySelectorAll("li");
 
       for (const item of listItems) {
           const img = item.querySelector("img");
