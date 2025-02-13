@@ -11,18 +11,41 @@
 (function() {
     'use strict';
 
-    const textBox = document.createElement('textarea');
-    textBox.style.position = 'fixed';
-    textBox.style.bottom = '0';
-    textBox.style.left = '0';
-    textBox.style.width = '100%';
-    textBox.style.height = '100px';
-    textBox.style.backgroundColor = 'white';
-    textBox.style.color = 'black';
-    textBox.style.border = '1px solid #ccc';
-    textBox.style.padding = '10px';
-    textBox.style.fontSize = '16px';
-    textBox.style.zIndex = '9999';
+    // Create a container div for the console box
+    const consoleBox = document.createElement('div');
+    consoleBox.style.position = 'fixed';
+    consoleBox.style.bottom = '0';
+    consoleBox.style.left = '0';
+    consoleBox.style.width = '100%';
+    consoleBox.style.height = '100px';
+    consoleBox.style.backgroundColor = 'white';
+    consoleBox.style.borderTop = '2px solid black';
+    consoleBox.style.boxShadow = '0 -2px 5px rgba(0,0,0,0.3)';
+    consoleBox.style.zIndex = '10000';
+    consoleBox.style.overflowY = 'auto';
+    consoleBox.style.padding = '10px';
 
-    document.body.appendChild(textBox);
+    // Add a title to the console box
+    const title = document.createElement('h3');
+    title.textContent = 'Console';
+    title.style.margin = '0 0 10px 0';
+    title.style.padding = '0';
+
+    // Add the title to the console box
+    consoleBox.appendChild(title);
+
+    // Add the console box to the document body
+    document.body.appendChild(consoleBox);
+
+    // Function to append text to the console box
+    function appendToConsole(text) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        consoleBox.appendChild(p);
+        consoleBox.scrollTop = consoleBox.scrollHeight; // Scroll to the bottom
+    }
+
+    // Append 'test' to the console box
+    appendToConsole('test');
+
 })();
