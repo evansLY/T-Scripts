@@ -1,0 +1,28 @@
+// ==UserScript==
+// @name         White Text Box Bottom
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Adds a white text box near the bottom of the page, full width and 100px high.
+// @author       OpenAI
+// @match        https://www.torn.com/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    const textBox = document.createElement('textarea');
+    textBox.style.position = 'fixed';
+    textBox.style.bottom = '0';
+    textBox.style.left = '0';
+    textBox.style.width = '100%';
+    textBox.style.height = '100px';
+    textBox.style.backgroundColor = 'white';
+    textBox.style.color = 'black';
+    textBox.style.border = '1px solid #ccc';
+    textBox.style.padding = '10px';
+    textBox.style.fontSize = '16px';
+    textBox.style.zIndex = '9999';
+
+    document.body.appendChild(textBox);
+})();
