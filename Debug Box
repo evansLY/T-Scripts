@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         White Text Box Bottom
+// @name         Debug Box
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Adds a white text box near the bottom of the page, full width and 100px high.
-// @author       OpenAI
+// @author       Glitchey []
 // @match        https://www.torn.com/*
 // @grant        none
 // ==/UserScript==
@@ -38,7 +38,7 @@
     document.body.appendChild(consoleBox);
 
     // Function to append text to the console box
-    function appendToConsole(text) {
+    function ToConsole(text) {
         const p = document.createElement('p');
         p.textContent = text;
         consoleBox.appendChild(p);
@@ -46,6 +46,6 @@
     }
 
     // Append 'test' to the console box
-    appendToConsole('test');
+    ToConsole('test');
 
 })();
