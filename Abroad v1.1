@@ -68,30 +68,42 @@ const ItemsToShow = new Map([
       return;
     }
 
-    const country = document.querySelector('h4#skip-to-content').innerText;
-    console.log("[Abroad Hider] Detected country:", country);
+      const country = document.querySelector('h4#skip-to-content')?.innerText?.trim();
+      console.log("[Abroad Hider] Detected country:", country);
 
-    const listItems = items.querySelectorAll("li");
-    for (const item of listItems) {
-      const img = item.querySelector("img");
-      if (!img) {
-        console.warn("[Abroad Hider] Couldn't find 'img'");
-        continue;
+      const allowedItems = ItemsToShow.get(country);
+      if (!allowedItems) {
+          console.warn(`[Abroad Hider] No items configured for '${country}'. Hiding all.`);
+          for (const item of listItems) {
+              item.hidden = true;
+          }
+          return;
       }
-      const src = img.getAttribute("src");
-      if (!src) {
-        console.warn("[Abroad Hider] Couldn't find 'src'");
-        continue;
+
+      console.log("[Abroad Hider] Allowed items for", country, ":", allowedItems);
+      const listItems = items.querySelectorAll("li");
+
+      for (const item of listItems) {
+          const img = item.querySelector("img");
+          if (!img) {
+              console.warn("[Abroad Hider] Couldn't find 'img'");
+              continue;
+          }
+          const src = img.getAttribute("src");
+          if (!src) {
+              console.warn("[Abroad Hider] Couldn't find 'src'");
+              continue;
+          }
+          const match = src.match(/\/images\/items\/(\d+)\/medium\.png/);
+          if (!match?.[1]) continue;
+
+          const itemId = Number.parseInt(match[1], 10);
+          console.log("[Abroad Hider] Checking item ID:", itemId);
+
+          if (allowedItems.includes(itemId)) continue;
+          item.hidden = true;
       }
-      const match = src.match(/\/images\/items\/(\d+)\/medium\.png/);
-      if (!match?.[1]) {
-        continue;
-      }
-      const itemId = Number.parseInt(match[1]);
-      console.log(ItemsToShow.get(country));
-      if (ItemsToShow.get(country).includes(itemId)) continue;
-      item.hidden = true;
-    }
+
   }
   main().catch(
     (err) => console.error("An error has occured while running Abroad Hider", err)
