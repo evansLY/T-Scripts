@@ -1,0 +1,100 @@
+// ==UserScript==
+// @name Abroad Item Hider
+// @namespace mavri
+// @version 1.0.0
+// @author MAVRI [2402357]
+// @description Hides all items except the specified ones.
+// @license GPLv3
+// @copyright 2025, diicot.cc
+// @match https://www.torn.com/index.php
+// @run-at document-end
+// ==/UserScript==
+
+const ItemsToShow = new Map([
+    ['Mexico', [258, 260, 1429]],
+    ['Cayman Islands', [618, 617]],
+    ['Canada', [261, 263, 1348]],
+    ['Hawaii', [264]],
+    ['United Kingdom', [266, 268, 267, 1361]],
+    ['Argentina', [269, 271]],
+    ['Switzerland', [273, 272]],
+    ['Japan', [277, 437]],
+    ['China', [274, 276]],
+    ['United Arab Emirates', [385, 384]],
+    ['South Africa', [281, 282, 206]]
+]);
+
+(function () {
+  'use strict';
+
+  async function waitForElement(querySelector, timeout) {
+    return await new Promise((resolve, reject) => {
+      if (document.querySelectorAll(querySelector).length) {
+        return resolve(document.querySelector(querySelector));
+      }
+      const observer = new MutationObserver(() => {
+        if (document.querySelectorAll(querySelector).length) {
+          observer.disconnect();
+          return resolve(document.querySelector(querySelector));
+        }
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  }
+
+  async function isAbroad() {
+    const element = await waitForElement(
+      'a[class^="travel-home"]'
+    );
+    return element !== null;
+  }
+  async function getItemList() {
+    const list = await waitForElement(
+      'ul[class^="users-list"]'
+    );
+    return list;
+  }
+  async function main() {
+    if (!isAbroad()) {
+      console.log("[Abroad Hider] You're not abroad.");
+    }
+    console.log("[Abroad Hider] You're abroad!");
+    const items = await getItemList();
+    if (!items) {
+      console.warn("[Abroad Hider] Failed to find the item list!");
+      return;
+    }
+
+const country = document.querySelector('h4#skip-to-content')?.innerText?.trim();
+    console.log("[Abroad Hider] Detected country:", country);
+    const listItems = items.querySelectorAll("li");
+
+    for (const item of listItems) {
+      const img = item.querySelector("img");
+      if (!img) {
+        console.warn("[Abroad Hider] Couldn't find 'img'");
+        continue;
+      }
+      const src = img.getAttribute("src");
+      if (!src) {
+        console.warn("[Abroad Hider] Couldn't find 'src'");
+        continue;
+      }
+      const match = src.match(/\/images\/items\/(\d+)\/medium\.png/);
+      if (!match?.[1]) {
+        continue;
+      }
+      const itemId = Number.parseInt(match[1]);
+     //console.log(ItemsToShow.get(country))
+      if  (ItemsToShow.get(country).includes(itemId)) continue;
+      item.hidden = true;
+    }
+  }
+  main().catch(
+    (err) => console.error("An error has occured while running Abroad Hider", err)
+  );
+
+})();
