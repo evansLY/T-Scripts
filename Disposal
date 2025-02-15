@@ -12,7 +12,6 @@
 // ==/UserScript==
 let url = window.location.href;
 const colors = {
-    uf: "#c4870c",
     safe: "#40Ab24",
     moderatelySafe: "#A4D497",
     caution: "#D6BBA2",
@@ -20,84 +19,72 @@ const colors = {
 };
 const JOB_METHOD_DIFFICULTIES_MAP = {
     "Biological Waste": {
-        uf:[],
         safe: ["Sink"],
         moderatelySafe: [],
         caution: ["Burn"],
         unsafe: ["Bury"],
     },
     "Body Part": {
-        uf:["Dissolve"],
         safe: ["Dissolve"],
         moderatelySafe: [],
         caution: [],
         unsafe: [],
     },
     "Broken Appliance": {
-        uf:["Sink"],
         safe: ["Sink"],
         moderatelySafe: [],
         caution: ["Abandon", "Bury"],
         unsafe: ["Dissolve"],
     },
     "Building Debris": {
-        uf:[],
         safe: ["Sink"],
         moderatelySafe: [],
         caution: ["Abandon", "Bury"],
         unsafe: [],
     },
     "Dead Body": {
-        uf:[],
         safe: ["Dissolve"],
         moderatelySafe: [],
         caution: [],
         unsafe: [],
     },
     Documents: {
-        uf:["Burn"],
         safe: ["Burn"],
         moderatelySafe: [],
         caution: ["Abandon", "Bury"],
         unsafe: ["Dissolve", "Sink"],
     },
     Firearm: {
-        uf:["Bury"],
         safe: ["Sink"],
         moderatelySafe: ["Bury"],
         caution: [],
         unsafe: ["Dissolve"],
     },
     "General Waste": {
-        uf:[],
         safe: ["Burn"],
         moderatelySafe: ["Bury"],
         caution: ["Abandon", "Sink"],
         unsafe: ["Dissolve"],
     },
     "Industrial Waste": {
-        uf:["Bury"],
         safe: ["Sink"],
         moderatelySafe: [],
         caution: ["Abandon", "Bury"],
         unsafe: [],
     },
     "Murder Weapon": {
-        uf:["Sink"],
         safe: ["Sink"],
         moderatelySafe: [],
         caution: [],
         unsafe: ["Dissolve"],
     },
     "Old Furniture": {
-        uf:["Bury"],
         safe: ["Burn"],
         moderatelySafe: [],
         caution: ["Abandon", "Bury", "Sink"],
         unsafe: ["Dissolve"],
     },
     Vehicle: {
-        uf:[],
         safe: ["Sink"],
         moderatelySafe: ["Burn"],
         caution: ["Abandon"],
