@@ -28,7 +28,7 @@ const JOB_METHOD_DIFFICULTIES_MAP = {
         safe: [],
         moderatelySafe: ["Dissolve"],
         caution: [],
-        unsafe: ["Dissolve:],
+        unsafe: ["Dissolve"],
     },
     "Broken Appliance": {
         safe: [],
