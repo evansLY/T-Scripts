@@ -17,80 +17,164 @@ const colors = {
     caution: "#D6BBA2",
     unsafe: "#B51B1B",
 };
-const JOB_METHOD_DIFFICULTIES_MAP = {
-    "Biological Waste": {
-        safe: ["Sink"],
-        moderatelySafe: ["Burn"],
-        caution: ["Burn"],
-        unsafe: [],
-    },
-    "Body Part": {
-        safe: [],
-        moderatelySafe: ["Dissolve"],
-        caution: [],
-        unsafe: ["Dissolve"],
-    },
-    "Broken Appliance": {
-        safe: [],
-        moderatelySafe: ["Sink"],
-        caution: ["Abandon", "Bury"],
-        unsafe: ["Sink"],
-    },
-    "Building Debris": {
-        safe: [],
-        moderatelySafe: ["Sink"],
-        caution: ["Bury"],
-        unsafe: ["Abandon"],
-    },
-    "Dead Body": {
-        safe: ["Dissolve"],
-        moderatelySafe: [],
-        caution: [],
-        unsafe: [],
-    },
-    Documents: {
-        safe: [],
-        moderatelySafe: ["Burn"],
-        caution: ["Abandon", "Bury"],
-        unsafe: ["Burn"],
-    },
-    Firearm: {
-        safe: ["Sink"],
-        moderatelySafe: [],
-        caution: [],
-        unsafe: ["Bury"],
-    },
-    "General Waste": {
-        safe: ["Burn"],
-        moderatelySafe: ["Bury"],
-        caution: ["Sink"],
-        unsafe: ["Abandon"],
-    },
-    "Industrial Waste": {
-        safe: ["Sink"],
-        moderatelySafe: [],
-        caution: ["Abandon"],
-        unsafe: ["Bury"],
-    },
-    "Murder Weapon": {
-        safe: [],
-        moderatelySafe: ["Dissolve"],
-        caution: [],
-        unsafe: ["Sink"],
-    },
-    "Old Furniture": {
-        safe: ["Burn"],
-        moderatelySafe: [],
-        caution: ["Abandon", "Dissolve" , "Sink"],
-        unsafe: ["Bury"],
-    },
-    Vehicle: {
-        safe: ["Sink"],
-        moderatelySafe: ["Burn"],
-        caution: [],
-        unsafe: ["Abandon"],
-    },
-};
+
+const uf = 1;
+
+lf(uf==1) {
+
+    const JOB_METHOD_DIFFICULTIES_MAP = {
+        "Biological Waste": {
+            safe: [],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Bury", "Dissolve" , "Sink"],
+        },
+        "Body Part": {
+            safe: ["Dissolve"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Bury", "Sink"],
+        },
+        "Broken Appliance": {
+            safe: ["Sink"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Bury", "Dissolve"],
+        },
+        "Building Debris": {
+            safe: ["Abandon"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Burn", "Bury", "Dissolve" , "Sink"],
+        },
+        "Dead Body": {
+            safe: ["Abandon"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Burn", "Bury", "Dissolve" , "Sink"],
+        },
+        Documents: {
+            safe: ["Burn"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Bury", "Dissolve" , "Sink"],
+        },
+        Firearm: {
+            safe: ["Bury"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Dissolve" , "Sink"],
+        },
+        "General Waste": {
+            safe: ["Abandon"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Burn", "Bury", "Dissolve" , "Sink"],
+        },
+        "Industrial Waste": {
+            safe: ["Bury"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Dissolve" , "Sink"],
+        },
+        "Murder Weapon": {
+            safe: ["Sink"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Bury", "Dissolve"],
+        },
+        "Old Furniture": {
+            safe: ["Bury"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Abandon", "Burn", "Dissolve" , "Sink"],
+        },
+        Vehicle: {
+            safe: ["Abandon"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Burn", "Bury", "Dissolve" , "Sink"],
+        },
+    };
+
+} else {
+
+    const JOB_METHOD_DIFFICULTIES_MAP = {
+        "Biological Waste": {
+            safe: ["Sink"],
+            moderatelySafe: ["Burn"],
+            caution: ["Burn"],
+            unsafe: [],
+        },
+        "Body Part": {
+            safe: [],
+            moderatelySafe: ["Dissolve"],
+            caution: [],
+            unsafe: ["Dissolve"],
+        },
+        "Broken Appliance": {
+            safe: [],
+            moderatelySafe: ["Sink"],
+            caution: ["Abandon", "Bury"],
+            unsafe: ["Sink"],
+        },
+        "Building Debris": {
+            safe: [],
+            moderatelySafe: ["Sink"],
+            caution: ["Bury"],
+            unsafe: ["Abandon"],
+        },
+        "Dead Body": {
+            safe: ["Dissolve"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: [],
+        },
+        Documents: {
+            safe: [],
+            moderatelySafe: ["Burn"],
+            caution: ["Abandon", "Bury"],
+            unsafe: ["Burn"],
+        },
+        Firearm: {
+            safe: ["Sink"],
+            moderatelySafe: [],
+            caution: [],
+            unsafe: ["Bury"],
+        },
+        "General Waste": {
+            safe: ["Burn"],
+            moderatelySafe: ["Bury"],
+            caution: ["Sink"],
+            unsafe: ["Abandon"],
+        },
+        "Industrial Waste": {
+            safe: ["Sink"],
+            moderatelySafe: [],
+            caution: ["Abandon"],
+            unsafe: ["Bury"],
+        },
+        "Murder Weapon": {
+            safe: [],
+            moderatelySafe: ["Dissolve"],
+            caution: [],
+            unsafe: ["Sink"],
+        },
+        "Old Furniture": {
+            safe: ["Burn"],
+            moderatelySafe: [],
+            caution: ["Abandon", "Dissolve" , "Sink"],
+            unsafe: ["Bury"],
+        },
+        Vehicle: {
+            safe: ["Sink"],
+            moderatelySafe: ["Burn"],
+            caution: [],
+            unsafe: ["Abandon"],
+        },
+    };
+}
+
 const NERVE_COST_BY_METHOD = {
     Abandon: 6,
     Bury: 8,
