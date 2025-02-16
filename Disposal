@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Disposal J.A.R.V.I.S.
 // @namespace   disposal-guide.nao.zero
-// @version     1.06
+// @version     1.07
 // @description color disposal options based on safety
 // @author      Terekhov, nao
 // @match       https://www.torn.com/loader.php?sid=crimes*
