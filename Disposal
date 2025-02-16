@@ -20,7 +20,7 @@ const colors = {
 //Unique Finds
 const uf = 1;
 
-lf(uf===1) {
+if(uf===1) {
 
     const JOB_METHOD_DIFFICULTIES_MAP = {
         "Biological Waste": {
